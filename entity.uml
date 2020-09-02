@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.pramati.banking.entity</OriginalElement>
+  <nodes>
+    <node x="0.0" y="456.0">com.pramati.banking.entity.Token</node>
+    <node x="0.0" y="816.0">com.pramati.banking.entity.TokenServiceMapping</node>
+    <node x="1047.0" y="1320.0">com.pramati.banking.entity.CustomerServiceRequest</node>
+    <node x="0.0" y="1320.0">com.pramati.banking.entity.Counter</node>
+    <node x="807.0" y="456.0">com.pramati.banking.entity.Customer</node>
+    <node x="935.0" y="1080.0">com.pramati.banking.entity.CustomerService</node>
+    <node x="450.0" y="1320.0">com.pramati.banking.entity.Audit</node>
+    <node x="932.0" y="816.0">com.pramati.banking.entity.CounterServiceMapping</node>
+    <node x="509.0" y="816.0">com.pramati.banking.entity.Service</node>
+    <node x="0.0" y="0.0">com.pramati.banking.entity.User</node>
+    <node x="0.0" y="1080.0">com.pramati.banking.entity.ActionItems</node>
+    <node x="898.0" y="1320.0">com.pramati.banking.entity.UserRole</node>
+    <node x="728.0" y="1080.0">com.pramati.banking.entity.BankService</node>
+    <node x="388.0" y="1080.0">com.pramati.banking.entity.Employee</node>
+    <node x="728.0" y="1320.0">com.pramati.banking.entity.ServiceType</node>
+    <node x="280.0" y="1320.0">com.pramati.banking.entity.TokenStatus</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.40900066181336864" x="687.0" y="745.5" />
+  <SelectedNodes>
+    <node>com.pramati.banking.entity.Token</node>
+    <node>com.pramati.banking.entity.TokenServiceMapping</node>
+    <node>com.pramati.banking.entity.CustomerServiceRequest</node>
+    <node>com.pramati.banking.entity.Counter</node>
+    <node>com.pramati.banking.entity.Customer</node>
+    <node>com.pramati.banking.entity.CustomerService</node>
+    <node>com.pramati.banking.entity.Audit</node>
+    <node>com.pramati.banking.entity.CounterServiceMapping</node>
+    <node>com.pramati.banking.entity.Service</node>
+    <node>com.pramati.banking.entity.User</node>
+    <node>com.pramati.banking.entity.ActionItems</node>
+    <node>com.pramati.banking.entity.UserRole</node>
+    <node>com.pramati.banking.entity.BankService</node>
+    <node>com.pramati.banking.entity.Employee</node>
+    <node>com.pramati.banking.entity.ServiceType</node>
+    <node>com.pramati.banking.entity.TokenStatus</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
