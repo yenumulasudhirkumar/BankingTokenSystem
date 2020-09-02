@@ -7,16 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 @Getter
@@ -34,6 +30,13 @@ public class Counter implements Serializable {
   @GeneratedValue(generator = "uuid2")
   private Integer id;
 
+
+  @Column(name = "counter_service_type")
+  @Size(max = 100)
+  private String counterServiceType;
+
+  @Column(name = "queue_size")
+  private int queueSize;
 
 
 }

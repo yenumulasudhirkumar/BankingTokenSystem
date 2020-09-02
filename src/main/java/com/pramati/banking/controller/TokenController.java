@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,17 +37,6 @@ public class TokenController extends ApiController {
   }
 
 
-  @ApiResponses(value = {
-      @ApiResponse(code = SwaggerConstants.SWAGGER_RESPONSE_CODE_200, message = SwaggerConstants.SWAGGER_RESPONSE_MESSAGE_200),
-      @ApiResponse(code = SwaggerConstants.SWAGGER_RESPONSE_CODE_401, message = SwaggerConstants.SWAGGER_RESPONSE_MESSAGE_401),
-      @ApiResponse(code = SwaggerConstants.SWAGGER_RESPONSE_CODE_403, message = SwaggerConstants.SWAGGER_RESPONSE_MESSAGE_403),
-      @ApiResponse(code = SwaggerConstants.SWAGGER_RESPONSE_CODE_404, message = SwaggerConstants.SWAGGER_RESPONSE_MESSAGE_404) })
-  @ApiOperation("Api method to Generate Token for a Service Request")
-  @GetMapping("/tokens/{tokenId}")
-  public ResponseEntity<ResponseDto<TokenDto>> getToken(@PathVariable("tokenId") int tokenId) {
-
-    return response("Token generated successfully", HttpStatus.OK,tokenService.getToken(tokenId));
-  }
 
   @ApiResponses(value = {
       @ApiResponse(code = SwaggerConstants.SWAGGER_RESPONSE_CODE_200, message = SwaggerConstants.SWAGGER_RESPONSE_MESSAGE_200),
@@ -71,11 +59,11 @@ public class TokenController extends ApiController {
   @ApiOperation("Api method to update Token status for a Service Request")
   @PostMapping("/tokens/{tokenId}/status")
   @PreAuthorize("hasAnyRole('ADMIN')")
-  public ResponseEntity<ResponseDto<TokenDto>> updateTokenStatus(@RequestBody TokenDto tokenDto,
-                                                                 @RequestParam TokenStatus tokenStatus,
-                                                                 @PathVariable("tokenId") Integer tokenId) {
+  public ResponseEntity<ResponseDto<String>> updateTokenStatus(@RequestParam TokenStatus tokenStatus,
+                                                               @PathVariable("tokenId") Integer tokenId) {
 
-    return response("Token generated successfully", HttpStatus.OK,tokenService.updateTokenStatus(tokenDto, tokenStatus));
+    tokenService.updateTokenStatus(tokenId, tokenStatus);
+    return response("Token generated successfully", HttpStatus.OK,"");
   }
 
 

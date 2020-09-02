@@ -1,6 +1,9 @@
 package com.pramati.banking.service;
 
 import com.pramati.banking.dto.TokenDto;
+import com.pramati.banking.entity.Counter;
+import com.pramati.banking.entity.ServiceType;
+import com.pramati.banking.entity.Token;
 import com.pramati.banking.entity.TokenStatus;
 
 public interface TokenService {
@@ -15,10 +18,9 @@ public interface TokenService {
 
   /**
    * Retrieve Token details based on TokenId.
-   * @param tokenId tokenId
    * @return TokenDto
    */
-  TokenDto getToken(int tokenId);
+  Token getNextTokenForProcessing(Integer counterId);
 
   /**
    * Update Token Details.
@@ -30,10 +32,9 @@ public interface TokenService {
 
   /**
    * Update Token Status.
-   * @param tokenDto tokenDto
+   * @param tokenId tokenId
    * @param tokenStatus tokenStatus
-   * @return TokenDto.
    */
-  TokenDto updateTokenStatus(TokenDto tokenDto, TokenStatus tokenStatus);
+  void updateTokenStatus(Integer tokenId, TokenStatus tokenStatus);
 
 }

@@ -5,19 +5,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -33,9 +40,10 @@ import javax.validation.constraints.Size;
 public class Token implements Serializable {
 
   @Id
-  @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
   @Column(name = "id")
-  private String id;
+  @SequenceGenerator(name = "token_seq", sequenceName = "Token_SEQ")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "token_seq")
+  private Integer id;
 
 
   @Column(name = "token_status")
@@ -44,7 +52,7 @@ public class Token implements Serializable {
   private TokenStatus tokenStatus;
 
   @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-  private Customer customer;
+  private User user;
 
   @Column(name = "service_type")
   @Size(max = 50)
@@ -54,9 +62,16 @@ public class Token implements Serializable {
   @Column(name = "comments")
   private String comments;
 
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  private Counter counter;
 
-  @Column(name = "is_multi_service")
-  private Boolean multiService;
+  @Builder.Default
+  @Embedded
+  private Audit audit = new Audit();
+
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "token_id")
+  private Set<TokenServiceMapping> tokenServiceMappings;
 
   @Column(name = "is_deleted")
   private Boolean deleted;

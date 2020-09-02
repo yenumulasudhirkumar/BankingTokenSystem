@@ -1,7 +1,6 @@
 package com.pramati.banking.service.impl;
 
 import com.pramati.banking.converter.UserConverter;
-import com.pramati.banking.dto.TokenDto;
 import com.pramati.banking.dto.UserDto;
 import com.pramati.banking.entity.Customer;
 import com.pramati.banking.entity.User;
@@ -79,9 +78,6 @@ public class CustomerServiceImpl implements UserService {
   }
 
   
-  public createNewCustomer(TokenDto tokenDto) {
-
-  }
 
 
 

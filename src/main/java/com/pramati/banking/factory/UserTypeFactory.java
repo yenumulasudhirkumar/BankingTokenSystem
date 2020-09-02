@@ -4,7 +4,6 @@ import com.pramati.banking.entity.UserRole;
 import com.pramati.banking.exception.UserException;
 import com.pramati.banking.service.UserService;
 import com.pramati.banking.service.impl.CustomerServiceImpl;
-import com.pramati.banking.service.impl.EmployeeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserTypeFactory {
 
-  private final EmployeeServiceImpl employeeService;
   private final CustomerServiceImpl customerService;
 
   /**
@@ -24,10 +22,6 @@ public class UserTypeFactory {
   public UserService getUser(UserRole userRole) {
 
     switch (userRole) {
-
-      case EMPLOYEE:
-        return employeeService;
-
       case CUSTOMER:
         return customerService;
 
