@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -71,9 +72,22 @@ public class CounterServiceImpl implements CounterService {
 
     Token token = tokenService.getNextTokenForProcessing(counterId);
     token.getTokenServiceMappings().forEach(tsm -> {
-      tsm.setTokenServiceStatus("COMPLETED");
-      tsm.setCounter(Counter.builder().id(counterId).build());
+
+      // If the service invloves mutiple counters to traverse.
+      if (tsm.getService().isMultiCounterService()) {
+
+        Set<Integer> serviceIds = new HashSet<>();
+        serviceIds.add(tsm.getService().getMappingStatusId());
+        List<Integer> countersList = counterServiceRepository.findCounterByServiceIds(serviceIds);
+        processNextCustomer(countersList.size() > 0 ? countersList.get(0) : 1);
+
+      } else {
+        tsm.setTokenServiceStatus("COMPLETED");
+        tsm.setCounter(Counter.builder().id(counterId).build());
+      }
     });
+
+
     token.setComments("Service completed");
     token.setTokenStatus(TokenStatus.COMPLETED);
     tokenService.saveToken(token);
