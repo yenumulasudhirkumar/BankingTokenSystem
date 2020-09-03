@@ -12,6 +12,7 @@ import com.pramati.banking.service.CounterService;
 import com.pramati.banking.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -100,6 +101,7 @@ public class TokenServiceImpl implements TokenService {
    * @param tokenStatus tokenStatus
    */
   @Override
+  @Secured("ROLE_ADMIN")
   public void updateTokenStatus(Integer tokenId, TokenStatus tokenStatus) {
 
     Token token = tokenRepository.findById(tokenId)
